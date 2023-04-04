@@ -31,7 +31,7 @@ namespace GalaxyOS
         protected override void BeforeRun()
         {
             Console.Clear();
-            Console.WriteLine("Cosmos loaded and booted successfully.");
+            Console.WriteLine("Cosmos loaded/booted successfully.");
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
             Console.WriteLine("GalaxyOS Booted successfully! :D\n");
             Console.Beep();
