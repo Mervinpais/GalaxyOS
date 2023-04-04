@@ -4,12 +4,15 @@ namespace GalaxyOS.Appilcations
 {
     public class SystemErrorHandler
     {
-        public static void SysError(Exception ex)
+        public static void SysError(Exception ex = null)
         {
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(ex.Message);
+            if (ex != null)
+            {
+                Console.WriteLine(ex.Message);
+            }
             string[] errorMessage = {
                         "",
                         "",

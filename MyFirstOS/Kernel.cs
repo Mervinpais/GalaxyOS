@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaxyOS.Appilcations;
+using System;
 using System.IO;
 using Sys = Cosmos.System;
 
@@ -12,7 +13,7 @@ namespace GalaxyOS
             Console.Clear();
             Console.WriteLine("Cosmos loaded and booted successfully.");
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
-            Console.WriteLine("OS Booted successfully! :D");
+            Console.WriteLine("GalaxyOS Booted successfully! :D\n");
             Console.Beep();
             if (!File.Exists(@"0:\readme.txt"))
             {
@@ -57,7 +58,7 @@ namespace GalaxyOS
             {
                 try
                 {
-                    Console.WriteLine("=== FILE CONTENTS ===");
+                    Console.WriteLine("=== " + input.Substring(4).TrimStart() + " ===");
                     Console.WriteLine(File.ReadAllText(input.Substring(4).TrimStart()));
                     Console.WriteLine("==== END OF FILE ====");
                 }
@@ -93,6 +94,18 @@ namespace GalaxyOS
                 ConsoleKeyInfo consoleKey = Console.ReadKey();
                 if (consoleKey.Key == ConsoleKey.Enter) { Sys.Power.Reboot(); }
                 else { Console.WriteLine(); }
+            }
+            else if (input == "gui_load")
+            {
+                try
+                {
+                    SystemErrorHandler.SysError();
+                    //SystemGUI.Init();
+                }
+                catch (Exception ex)
+                {
+                    SystemErrorHandler.SysError(ex);
+                }
             }
             else
             {
