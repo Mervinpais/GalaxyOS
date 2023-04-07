@@ -59,26 +59,41 @@ namespace GalaxyOS
             }
             else if (input.StartsWith("read"))
             {
+                input = input.Substring(4).TrimStart();
+                if (!input.StartsWith("0:\\"))
+                {
+                    input = "0:\\" + input;
+                }
+
+                Console.WriteLine("=== " + input + " ===\n");
+
                 try
                 {
-                    Console.WriteLine("=== " + input.Substring(4).TrimStart() + " ===");
-                    Console.WriteLine(File.ReadAllText(input.Substring(4).TrimStart()));
-                    Console.WriteLine("==== END OF FILE ====");
+                    Console.WriteLine(File.ReadAllText(input));
                 }
                 catch (FileNotFoundException)
                 {
-                    Console.WriteLine("File Not Found");
+                    Console.WriteLine("!File Not Found!");
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
+                Console.WriteLine("\n==== END OF FILE ====");
             }
             else if (input == "help")
             {
                 Console.Clear();
-                Console.WriteLine("help - help message");
-                Console.WriteLine("dir, ls - displays directory files");
+                string[] help = {
+                    "help - help message",
+                    "dir, ls - displays directory files",
+                    "shutdown - shuts down/turn off the computer",
+                    "restart - turns off the computer, and then turns back on again",
+                    "read - reads file specified in arguments",
+                    "       Syntax; read <fileLocation>",
+                    "text - Loads inbuilt text editor"
+                };
+                Console.Write(string.Join("\n", help));
             }
             else if (input == "text")
             {
@@ -111,7 +126,7 @@ namespace GalaxyOS
                     canvas.DrawLine(Color.MintCream, 250, 150, 400, 250);
 
                     // A PaleVioletRed rectangle
-                    canvas.DrawRectangle(Color.PaleVioletRed, 350, 350, 80, 60);
+                    canvas.DrawFilledRectangle(Color.PaleVioletRed, 350, 350, 80, 60);
 
                     // A LimeGreen rectangle
                     canvas.DrawRectangle(Color.LimeGreen, 450, 450, 80, 60);
